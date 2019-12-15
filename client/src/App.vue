@@ -1,17 +1,18 @@
 <template>
   <div id="app">
     <h1 class="header">Seven Meals</h1>
-    <div class="week-container">
+    <draggable v-if="weeks[0]" v-model="weeks[0].days" group="weekChoice" @start="drag=true" @end="drag=false" class="week-container">
       <p v-for="day in weeks[0].days">{{day.name}}</p>
-    </div>
-    <div class="meals-container">
-      <p v-for="meal in meals">{{meal.name}}</p>
-    </div>
+    </draggable>
+    <draggable v-if="meals" v-model="meals" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="meals-container">
+      <p v-for="meal in meals" :key="meal.id">{{meal.name}}</p>
+    </draggable>
   </div>
 </template>
 
 <script>
 import DatabaseService from './services/DatabaseService'
+import draggable from 'vuedraggable'
 
 export default {
   name: 'app',
@@ -23,7 +24,7 @@ export default {
     }
   },
   components: {
-
+    draggable
   },
   mounted() {
     this.getAllMeals()
@@ -54,7 +55,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
   display: grid;
   grid-template: auto 1fr / 1fr 2fr;
 }

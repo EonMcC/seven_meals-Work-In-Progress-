@@ -8,11 +8,11 @@ export default {
     return fetch(mealsURL)
       .then(res => res.json())
   },
-  getAllWeeks(){
+  getAllWeeks() {
     return fetch(weeksURL)
       .then(res => res.json())
   },
-  getAllInventories(){
+  getAllInventories() {
     return fetch(inventoriesURL)
       .then(res => res.json())
   },
@@ -102,5 +102,5 @@ export default {
       headers: { 'Content-Type': 'application/json'}
     })
       .then(res => res.json())
-  }  
+  }
 }
