@@ -27,7 +27,7 @@ db.weeks.insertMany([
   "name": "Week 1",
   "days": [
     {
-      "name": "Tacos",
+      "name": "Day 1",
       "image": "https://lovingitvegan.com/wp-content/uploads/2019/02/Vegan-Tacos-15.jpg",
       "instructions": "Do the cooking",
       "ingredients": {
@@ -36,7 +36,52 @@ db.weeks.insertMany([
       }
     },
     {
-      "name": "Spaghetti",
+      "name": "Day 2",
+      "image": "https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg",
+      "instructions": "Do the cooking",
+      "ingredients": {
+        "spaghetti": "1",
+        "tomatoes": "10"
+      }
+    },
+    {
+      "name": "Day 3",
+      "image": "https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg",
+      "instructions": "Do the cooking",
+      "ingredients": {
+        "spaghetti": "1",
+        "tomatoes": "10"
+      }
+    },
+    {
+      "name": "Day 4",
+      "image": "https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg",
+      "instructions": "Do the cooking",
+      "ingredients": {
+        "spaghetti": "1",
+        "tomatoes": "10"
+      }
+    },
+    {
+      "name": "Day 5",
+      "image": "https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg",
+      "instructions": "Do the cooking",
+      "ingredients": {
+        "spaghetti": "1",
+        "tomatoes": "10"
+      }
+    },
+    {
+      "name": "Day 6",
+      "image": "https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg",
+      "instructions": "Do the cooking",
+      "ingredients": {
+        "spaghetti": "1",
+        "tomatoes": "10"
+      }
+    },
+    {
+      "name": "Day 7",
       "image": "https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg",
       "instructions": "Do the cooking",
       "ingredients": {
