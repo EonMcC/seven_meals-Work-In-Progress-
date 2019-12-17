@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <h1 class="header">Seven Meals</h1>
-    <draggable v-if="weeks" v-model="weeks" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="week-container">
-      <p v-for="day in weeks.slice(0, 7)">{{day.name}}</p>
+    <draggable v-if="week" v-model="week" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="week-container">
+      <p v-for="day in week.slice(0, 7)">{{day.name}}</p>
     </draggable>
     <draggable v-if="meals" v-model="meals" :group="{ name: 'choiceOfMeals', pull: 'clone', put: false}" @start="drag=true" @end="drag=false" class="meals-container">
       <p v-for="meal in meals" :key="meal.id">{{meal.name}}</p>
     </draggable>
+    <button type="button" name="button" v-on:click="addWeekIngredients">Save</button>
   </div>
 </template>
 
@@ -19,8 +20,8 @@ export default {
   data() {
     return {
       meals: [],
-      weeks: [],
-      weeksIngredients: {},
+      week: [],
+      weeksIngredients: [],
       inventories: []
     }
   },
@@ -39,9 +40,18 @@ export default {
     getAllInventories(){
       DatabaseService.getAllInventories()
       .then(data => this.inventories = data)
+    },
+    addWeekIngredients(){
+      for (const meal of this.week) {
+        console.log(meal.ingredients)
+        for (const ingredient in meal.ingredients) {
+          this.weeksIngredients.push({[ingredient]: meal.ingredients[ingredient]});
+        }
+      }
     }
   }
 }
+
 </script>
 
 <style>
