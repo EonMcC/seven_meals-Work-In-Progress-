@@ -7,13 +7,17 @@
     <draggable v-if="meals" v-model="meals" :group="{ name: 'choiceOfMeals', pull: 'clone', put: false}" @start="drag=true" @end="drag=false" class="meals-container">
       <p v-for="meal in meals" :key="meal.id">{{meal.name}}</p>
     </draggable>
-    <button type="button" name="button" v-on:click="addWeekIngredients">Save</button>
+    <button type="button" name="button" v-on:click="addWeekIngredients(); saveWeekToDB();">Save Week</button>
+    <button type="button" name="button" v-on:click="addNewMealRecipe();">Add New Meal</button>
+    <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
+    <shopping-list :weekObject='weekObject'></shopping-list>
   </div>
 </template>
 
 <script>
 import DatabaseService from './services/DatabaseService'
 import draggable from 'vuedraggable'
+import ShoppingList from './components/ShoppingList'
 
 export default {
   name: 'app',
@@ -21,12 +25,15 @@ export default {
     return {
       meals: [],
       week: [],
+      weekObject: {},
       weeksIngredients: [],
       inventories: []
     }
   },
   components: {
-    draggable
+    draggable,
+    "shopping-list": ShoppingList
+
   },
   mounted() {
     this.getAllMeals()
@@ -43,11 +50,37 @@ export default {
     },
     addWeekIngredients(){
       for (const meal of this.week) {
-        console.log(meal.ingredients)
         for (const ingredient in meal.ingredients) {
           this.weeksIngredients.push({[ingredient]: meal.ingredients[ingredient]});
         }
       }
+    },
+    saveWeekToDB(){
+      this.weekObject = {"week_one": this.week};
+      DatabaseService.addWeek(this.weekObject)
+    },
+    addNewMealRecipe(){
+      this.meals.push({
+          "name": "New Meal",
+          "image": "https://lovingitvegan.com/wp-content/uploads/2019/02/Vegan-Tacos-15.jpg",
+          "instructions": "Do the cooking",
+          "ingredients": {
+            "tortillas": "6",
+            "tomatoes": "5"
+          }
+        })
+      DatabaseService.addMeal(  {
+          "name": "New Meal",
+          "image": "https://lovingitvegan.com/wp-content/uploads/2019/02/Vegan-Tacos-15.jpg",
+          "instructions": "Do the cooking",
+          "ingredients": {
+            "tortillas": "6",
+            "tomatoes": "5"
+          }
+        })
+    },
+    createShoppingList(){
+
     }
   }
 }
