@@ -8,10 +8,12 @@
 </template>
 
 <script>
+
 export default {
   name: "shopping-list",
   props: ['weekObject']
 }
+
 </script>
 
 <style lang="css" scoped>

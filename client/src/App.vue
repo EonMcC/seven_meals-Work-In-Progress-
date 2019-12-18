@@ -4,13 +4,12 @@
     <draggable v-if="week" v-model="week" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="week-container">
       <p v-for="day in week.slice(0, 7)">{{day.name}}</p>
     </draggable>
-    <draggable v-if="meals" v-model="meals" :group="{ name: 'choiceOfMeals', pull: 'clone', put: false}" @start="drag=true" @end="drag=false" class="meals-container">
-      <p v-for="meal in meals" :key="meal.id">{{meal.name}}</p>
-    </draggable>
+    <meal-container :meals='meals'></meal-container>
     <button type="button" name="button" v-on:click="addWeekIngredients(); saveWeekToDB();">Save Week</button>
     <button type="button" name="button" v-on:click="addNewMealRecipe();">Add New Meal</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
     <shopping-list v-if="showShoppingList" :weekObject='weekObject'></shopping-list>
+
   </div>
 </template>
 
@@ -18,6 +17,7 @@
 import DatabaseService from './services/DatabaseService'
 import draggable from 'vuedraggable'
 import ShoppingList from './components/ShoppingList'
+import MealContainer from './components/MealContainer'
 
 export default {
   name: 'app',
@@ -33,7 +33,8 @@ export default {
   },
   components: {
     draggable,
-    "shopping-list": ShoppingList
+    "shopping-list": ShoppingList,
+    "meal-container": MealContainer
 
   },
   mounted() {
