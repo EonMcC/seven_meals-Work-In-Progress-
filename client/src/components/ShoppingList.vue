@@ -1,17 +1,23 @@
 <template lang="html">
-  <div>
   <div class="shopping-list">
-    <p v-for="meal in weekObject.week_one">{{meal.ingredients}}</p>
-  </div>
+    <div>
+      <p v-for="meal in weekObject.week_one">{{meal.ingredients}}</p>
+    </div>
+    <button type="button" name="button" v-on:click="handleCloseShoppingList();">Close Shopping List</button>
 
   </div>
 </template>
 
 <script>
-
+import {eventBus} from '../main.js'
 export default {
   name: "shopping-list",
-  props: ['weekObject']
+  props: ['weekObject'],
+  methods: {
+    handleCloseShoppingList(){
+      eventBus.$emit('close-shopping-list')
+    }
+  }
 }
 
 </script>

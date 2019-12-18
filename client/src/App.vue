@@ -6,10 +6,10 @@
     </draggable>
     <meal-container :meals='meals'></meal-container>
     <button type="button" name="button" v-on:click="addWeekIngredients(); saveWeekToDB();">Save Week</button>
-    <button type="button" name="button" v-on:click="addNewMealRecipe();">Add New Meal</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
     <shopping-list v-if="showShoppingList" :weekObject='weekObject'></shopping-list>
-    <new-meal-form></new-meal-form>
+    <button type="button" name="button" v-on:click="handleShowForm();">Add New Meal</button>
+    <new-meal-form v-if="showForm"></new-meal-form>
   </div>
 </template>
 
@@ -30,7 +30,8 @@ export default {
       weekObject: {},
       weeksIngredients: [],
       inventories: [],
-      showShoppingList: false
+      showShoppingList: false,
+      showForm: false
     }
   },
   components: {
@@ -46,7 +47,19 @@ export default {
 
     eventBus.$on("new-meal", mealObject => {
       this.meals.push(mealObject)
-    })
+      this.showForm = false
+      })
+
+    eventBus.$on('close-form', () =>
+      this.showForm = false
+    )
+
+    eventBus.$on('close-shopping-list', () =>
+      this.showShoppingList = false
+    )
+
+
+
 
   },
   methods: {
@@ -70,25 +83,8 @@ export default {
       DatabaseService.addWeek(this.weekObject)
       console.log(this.weekObject)
     },
-    addNewMealRecipe(){
-      this.meals.push({
-          "name": "New Meal",
-          "image": "https://lovingitvegan.com/wp-content/uploads/2019/02/Vegan-Tacos-15.jpg",
-          "instructions": "Do the cooking",
-          "ingredients": {
-            "tortillas": "6",
-            "tomatoes": "5"
-          }
-        })
-      DatabaseService.addMeal(  {
-          "name": "New Meal",
-          "image": "https://lovingitvegan.com/wp-content/uploads/2019/02/Vegan-Tacos-15.jpg",
-          "instructions": "Do the cooking",
-          "ingredients": {
-            "tortillas": "6",
-            "tomatoes": "5"
-          }
-        })
+    handleShowForm(){
+      this.showForm = true;
     },
     createShoppingList(){
       this.showShoppingList = true
