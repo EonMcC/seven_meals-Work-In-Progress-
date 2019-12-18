@@ -6,6 +6,7 @@
     </draggable>
     <meal-container :meals='meals'></meal-container>
     <button type="button" name="button" v-on:click="addWeekIngredients(); saveWeekToDB();">Save Week</button>
+    <button type="button" name="button" v-on:click="handleResetWeek();">Reset Week</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
     <shopping-list v-if="showShoppingList" :weekObject='weekObject'></shopping-list>
     <button type="button" name="button" v-on:click="handleShowForm();">Add New Meal</button>
@@ -57,10 +58,6 @@ export default {
     eventBus.$on('close-shopping-list', () =>
       this.showShoppingList = false
     )
-
-
-
-
   },
   methods: {
     getAllMeals(){
@@ -81,13 +78,16 @@ export default {
     saveWeekToDB(){
       this.weekObject = {"week_one": this.week};
       DatabaseService.addWeek(this.weekObject)
-      console.log(this.weekObject)
     },
     handleShowForm(){
       this.showForm = true;
     },
     createShoppingList(){
       this.showShoppingList = true
+    },
+    handleResetWeek(){
+      this.week = [];
+      this.weekObject = [];
     }
   }
 }
