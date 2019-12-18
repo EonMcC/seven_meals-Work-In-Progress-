@@ -9,7 +9,7 @@
     <button type="button" name="button" v-on:click="addNewMealRecipe();">Add New Meal</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
     <shopping-list v-if="showShoppingList" :weekObject='weekObject'></shopping-list>
-
+    <new-meal-form></new-meal-form>
   </div>
 </template>
 
@@ -18,6 +18,8 @@ import DatabaseService from './services/DatabaseService'
 import draggable from 'vuedraggable'
 import ShoppingList from './components/ShoppingList'
 import MealContainer from './components/MealContainer'
+import NewMealForm from './components/NewMealForm'
+import {eventBus} from './main.js'
 
 export default {
   name: 'app',
@@ -34,12 +36,18 @@ export default {
   components: {
     draggable,
     "shopping-list": ShoppingList,
-    "meal-container": MealContainer
+    "meal-container": MealContainer,
+    "new-meal-form": NewMealForm
 
   },
   mounted() {
     this.getAllMeals()
     this.getAllInventories()
+
+    eventBus.$on("new-meal", mealObject => {
+      this.meals.push(mealObject)
+    })
+
   },
   methods: {
     getAllMeals(){
@@ -100,6 +108,7 @@ export default {
   margin-top: 20px;
   display: grid;
   grid-template: auto 1fr / 1fr 2fr;
+  background-color: #E8E8E8;
 }
 
 .header {
