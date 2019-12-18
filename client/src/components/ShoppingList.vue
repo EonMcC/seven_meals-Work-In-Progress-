@@ -1,9 +1,9 @@
 <template lang="html">
-  <div class="">
-  <div v-for="meal in weekObject.week_one">
-    <p>{{meal.ingredients}}</p>
-
+  <div>
+  <div class="shopping-list">
+    <p v-for="meal in weekObject.week_one">{{meal.ingredients}}</p>
   </div>
+
   </div>
 </template>
 
@@ -15,4 +15,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .shopping-list {
+    position: absolute;
+    height: 90vh;
+    width: 90vw;
+    top: 0;
+    left: 0;
+    background-color: lightgrey;
+    opacity: 0.9;
+  }
 </style>

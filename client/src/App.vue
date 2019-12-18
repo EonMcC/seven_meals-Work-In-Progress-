@@ -10,7 +10,7 @@
     <button type="button" name="button" v-on:click="addWeekIngredients(); saveWeekToDB();">Save Week</button>
     <button type="button" name="button" v-on:click="addNewMealRecipe();">Add New Meal</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
-    <shopping-list :weekObject='weekObject'></shopping-list>
+    <shopping-list v-if="showShoppingList" :weekObject='weekObject'></shopping-list>
   </div>
 </template>
 
@@ -27,7 +27,8 @@ export default {
       week: [],
       weekObject: {},
       weeksIngredients: [],
-      inventories: []
+      inventories: [],
+      showShoppingList: false
     }
   },
   components: {
@@ -58,6 +59,7 @@ export default {
     saveWeekToDB(){
       this.weekObject = {"week_one": this.week};
       DatabaseService.addWeek(this.weekObject)
+      console.log(this.weekObject)
     },
     addNewMealRecipe(){
       this.meals.push({
@@ -80,7 +82,7 @@ export default {
         })
     },
     createShoppingList(){
-
+      this.showShoppingList = true
     }
   }
 }
