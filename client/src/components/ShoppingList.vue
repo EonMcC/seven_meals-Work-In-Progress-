@@ -1,7 +1,8 @@
 <template lang="html">
   <div class="shopping-list">
     <div>
-      <p v-for="meal in weekObject.week_one">{{meal.ingredients}}</p>
+      <p v-for="ingredient of weeksIngredients">{{ingredient}}</p>
+      <p v-for="ingredientValue of weeksIngredientsValue">{{ingredientValue}}</p>
     </div>
     <button type="button" name="button" v-on:click="handleCloseShoppingList();">Close Shopping List</button>
 
@@ -12,7 +13,7 @@
 import {eventBus} from '../main.js'
 export default {
   name: "shopping-list",
-  props: ['weekObject'],
+  props: ['weeksIngredients', 'weeksIngredientsValue'],
   methods: {
     handleCloseShoppingList(){
       eventBus.$emit('close-shopping-list')

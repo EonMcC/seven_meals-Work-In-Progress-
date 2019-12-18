@@ -5,10 +5,10 @@
       <p v-for="day in week.slice(0, 7)">{{day.name}}</p>
     </draggable>
     <meal-container :meals='meals'></meal-container>
-    <button type="button" name="button" v-on:click="addWeekIngredients(); saveWeekToDB();">Save Week</button>
+    <button type="button" name="button" v-on:click="addWeekIngredients();">Save Week</button>
     <button type="button" name="button" v-on:click="handleResetWeek();">Reset Week</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
-    <shopping-list v-if="showShoppingList" :weekObject='weekObject'></shopping-list>
+    <shopping-list v-if="showShoppingList" :weeksIngredients='weeksIngredients' :weeksIngredientsValue='weeksIngredientsValue'></shopping-list>
     <button type="button" name="button" v-on:click="handleShowForm();">Add New Meal</button>
     <new-meal-form v-if="showForm"></new-meal-form>
   </div>
@@ -30,6 +30,7 @@ export default {
       week: [],
       weekObject: {},
       weeksIngredients: [],
+      weeksIngredientsValue: [],
       inventories: [],
       showShoppingList: false,
       showForm: false
@@ -46,7 +47,7 @@ export default {
     this.getAllMeals()
     this.getAllInventories()
 
-    eventBus.$on("new-meal", mealObject => {
+    eventBus.$on('new-meal', mealObject => {
       this.meals.push(mealObject)
       this.showForm = false
       })
@@ -71,13 +72,10 @@ export default {
     addWeekIngredients(){
       for (const meal of this.week) {
         for (const ingredient in meal.ingredients) {
-          this.weeksIngredients.push({[ingredient]: meal.ingredients[ingredient]});
+          this.weeksIngredients.push(ingredient);
+          this.weeksIngredientsValue.push(meal.ingredients[ingredient]);
         }
       }
-    },
-    saveWeekToDB(){
-      this.weekObject = {"week_one": this.week};
-      DatabaseService.addWeek(this.weekObject)
     },
     handleShowForm(){
       this.showForm = true;
