@@ -8,7 +8,7 @@
     <button type="button" name="button" v-on:click="addWeekIngredients();">Save Week</button>
     <button type="button" name="button" v-on:click="handleResetWeek();">Reset Week</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
-    <shopping-list v-if="showShoppingList" :weeksIngredients='weeksIngredients' :weeksIngredientsValue='weeksIngredientsValue'></shopping-list>
+    <shopping-list v-if="showShoppingList" :noDuplicateIngredients='noDuplicateIngredients'></shopping-list>
     <button type="button" name="button" v-on:click="handleShowForm();">Add New Meal</button>
     <new-meal-form v-if="showForm"></new-meal-form>
   </div>
@@ -29,8 +29,7 @@ export default {
       meals: [],
       week: [],
       weekObject: {},
-      weeksIngredients: [],
-      weeksIngredientsValue: [],
+      noDuplicateIngredients: {},
       inventories: [],
       showShoppingList: false,
       showForm: false
@@ -71,7 +70,7 @@ export default {
     },
     addWeekIngredients(){
       var allMealsArray = [];  //array
-      var noDuplicateIngredients = {};  //ans
+        //ans
       for (const meal of this.week) {
         for (const ingredient in meal.ingredients) {
           allMealsArray.push({[ingredient]: parseInt(meal.ingredients[ingredient])})
@@ -82,24 +81,10 @@ export default {
       }
       for(var i = 0; i < allMealsArray.length; ++i){
         for(var ingredientObject in allMealsArray[i]){
-          noDuplicateIngredients[ingredientObject] = noDuplicateIngredients[ingredientObject] ? noDuplicateIngredients[ingredientObject] + allMealsArray[i][ingredientObject] : allMealsArray[i][ingredientObject];
+          this.noDuplicateIngredients[ingredientObject] = this.noDuplicateIngredients[ingredientObject] ? this.noDuplicateIngredients[ingredientObject] + allMealsArray[i][ingredientObject] : allMealsArray[i][ingredientObject];
         }
       }
-      console.log(noDuplicateIngredients)
-      //
-      // var a = [{a: 2, b: 5, c: 6}, {a:3, b: 4, d:1},{a: 1, d: 2}];
-      //     var ans = {};
-      //
-      //     for(var i = 0; i < a.length; ++i){
-      //       for(var obj in a[i]){
-      //        ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
-      //       }
-      //     }
-
-
-
-
-
+      console.log(this.noDuplicateIngredients)
     },
     handleShowForm(){
       this.showForm = true;
