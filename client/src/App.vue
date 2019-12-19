@@ -70,12 +70,36 @@ export default {
       .then(data => this.inventories = data)
     },
     addWeekIngredients(){
+      var allMealsArray = [];  //array
+      var noDuplicateIngredients = {};  //ans
       for (const meal of this.week) {
         for (const ingredient in meal.ingredients) {
-          this.weeksIngredients.push(ingredient);
-          this.weeksIngredientsValue.push(meal.ingredients[ingredient]);
+          allMealsArray.push({[ingredient]: parseInt(meal.ingredients[ingredient])})
+
+          // this.weeksIngredients.push(ingredient);
+          // this.weeksIngredientsValue.push(meal.ingredients[ingredient]);
         }
       }
+      for(var i = 0; i < allMealsArray.length; ++i){
+        for(var ingredientObject in allMealsArray[i]){
+          noDuplicateIngredients[ingredientObject] = noDuplicateIngredients[ingredientObject] ? noDuplicateIngredients[ingredientObject] + allMealsArray[i][ingredientObject] : allMealsArray[i][ingredientObject];
+        }
+      }
+      console.log(noDuplicateIngredients)
+      //
+      // var a = [{a: 2, b: 5, c: 6}, {a:3, b: 4, d:1},{a: 1, d: 2}];
+      //     var ans = {};
+      //
+      //     for(var i = 0; i < a.length; ++i){
+      //       for(var obj in a[i]){
+      //        ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
+      //       }
+      //     }
+
+
+
+
+
     },
     handleShowForm(){
       this.showForm = true;
