@@ -2,7 +2,6 @@
   <div class="form">
     <form class="" v-on:submit.prevent="handleSubmit();" action="index.html" method="post">
       <input type="text" name="" value="" placeholder="Name" v-model="mealName">
-      <!-- <input type="text" name="" value="" placeholder="Ingredient" v-model="ingredients"> -->
       <div v-for="(ingredient, index) in this.ingredients">
       <input type="text" v-model="ingredient.ingredient">
       </div>
@@ -12,15 +11,36 @@
       <h4 @click="addIngredient">
         New Ingredient
       </h4>
-      <input type="text" name="" value="" placeholder="Instructions" v-model="instructions">
+      <!-- <input type="text" name="" value="" placeholder="Instructions" v-model="instructions"> -->
       <input type="text" name="" value="" placeholder="URL" v-model="image">
       <input type="submit" name="" value="Accept Recipe">
     </form>
     <button type="button" name="button" v-on:click="handleCloseForm();">Cancel Form</button>
+    <form method="post">
+      <editor
+      v-model="instructions"
+       api-key="xl05x6x6zhlkt1o2viaihcjkj8u9gm6ls0gdwlod3h7mmjcu"
+       initialValue="<p>Add instructions here</p>"
+       :init="{
+         height: 500,
+         menubar: false,
+         plugins: [
+           'advlist autolink lists link image charmap print preview anchor',
+           'searchreplace visualblocks code fullscreen',
+           'insertdatetime media table paste code help wordcount'
+         ],
+         toolbar:
+           'undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | help'
+       }"
+       ></editor>
+</form>
   </div>
 </template>
 
 <script>
+import Editor from '@tinymce/tinymce-vue'
 import { eventBus } from '../main.js'
 import DatabaseService from '../services/DatabaseService'
 
@@ -35,6 +55,9 @@ export default {
       image: "",
       mealObject: {}
     }
+  },
+  components: {
+    'editor': Editor
   },
   methods: {
     handleSubmit() {

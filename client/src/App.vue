@@ -74,9 +74,6 @@ export default {
       for (const meal of this.week) {
         for (const ingredient in meal.ingredients) {
           allMealsArray.push({[ingredient]: parseInt(meal.ingredients[ingredient])})
-
-          // this.weeksIngredients.push(ingredient);
-          // this.weeksIngredientsValue.push(meal.ingredients[ingredient]);
         }
       }
       for(var i = 0; i < allMealsArray.length; ++i){
