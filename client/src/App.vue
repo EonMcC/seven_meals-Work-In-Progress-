@@ -2,7 +2,10 @@
   <div id="app">
     <h1 class="header">Seven Meals</h1>
     <draggable v-if="week" v-model="week" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="week-container">
-      <p v-for="day in week.slice(0, 7)">{{day.name}}</p>
+      <div class="indv-meal-box" v-for="day in week.slice(0, 7)">
+        <h3>{{day.name}}</h3>
+        <img class="image" v-bind:src="day.image">
+      </div>
     </draggable>
     <meal-container :meals='meals'></meal-container>
     <button type="button" name="button" v-on:click="addWeekIngredients();">Save Week</button>
@@ -101,12 +104,13 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-
+  background-color: #B3D89C;
+  height: 95vh;
+  width: 95vw;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
   display: grid;
-  grid-template: auto 1fr / 1fr 2fr;
+  grid-template: auto 1fr / 1fr 1fr;
   background-color: #E8E8E8;
 }
 
@@ -116,11 +120,34 @@ export default {
 
 .week-container {
   grid-area: 2/1/3/2;
+  border: 2px solid #77A6B6;
+  margin-left: 5%;
 }
 
 .meals-container {
   grid-area: 2/2/3/3;
-  display: flex;
-  flex-direction: column;
+}
+
+.indv-meal-box {
+  border: 1px solid #4D7298;
+  margin: 0% auto 5% auto;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  display: inline;
+}
+
+h3 {
+  display: inline;
+  z-index: 1;
+  opacity: 0.9;
+  width: 33%;
 }
 </style>
