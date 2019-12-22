@@ -1,10 +1,7 @@
 <template lang="html">
   <div class="shopping-list">
-    <div>
-      <p v-for="meal in weekObject.week_one">{{meal.ingredients}}</p>
-    </div>
+      <p v-for="(quantity, ingredient) in noDuplicateIngredients">{{ingredient}} : {{quantity}}</p>
     <button type="button" name="button" v-on:click="handleCloseShoppingList();">Close Shopping List</button>
-
   </div>
 </template>
 
@@ -12,7 +9,7 @@
 import {eventBus} from '../main.js'
 export default {
   name: "shopping-list",
-  props: ['weekObject'],
+  props: ['noDuplicateIngredients'],
   methods: {
     handleCloseShoppingList(){
       eventBus.$emit('close-shopping-list')
