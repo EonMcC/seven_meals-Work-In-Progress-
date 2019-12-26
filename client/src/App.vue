@@ -1,14 +1,60 @@
 <template>
   <div id="app">
     <h1 class="header">Seven Meals</h1>
-    <draggable v-if="week" v-model="week" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="week-container">
-      <div class="indv-meal-box" v-for="day in week.slice(0, 7)">
-        <h3>{{day.name}}</h3>
-        <img class="image" v-bind:src="day.image">
-      </div>
-    </draggable>
+    <div class="week-container">
+      <draggable v-if="mon" v-model="mon" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+        <p>Monday</p>
+        <div class="indv-meal-box" v-for="meal in mon.slice(0, 1)">
+          <h3>{{meal.name}}</h3>
+          <!-- <img class="image" v-bind:src="meal.image"> -->
+        </div>
+      </draggable>
+      <draggable v-if="tue" v-model="tue" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+        <p>Tuesday</p>
+        <div class="indv-meal-box" v-for="meal in tue.slice(0, 1)">
+
+          <h3>{{meal.name}}</h3>
+          <!-- <img class="image" v-bind:src="meal.image"> -->
+        </div>
+      </draggable>
+      <draggable v-if="wed" v-model="wed" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+        <p>Wednesday</p>
+        <div class="indv-meal-box" v-for="meal in wed.slice(0, 1)">
+          <h3>{{meal.name}}</h3>
+          <!-- <img class="image" v-bind:src="meal.image"> -->
+        </div>
+      </draggable>
+      <draggable v-if="thur" v-model="thur" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+        <p>Thursday</p>
+        <div class="indv-meal-box" v-for="meal in thur.slice(0, 1)">
+          <h3>{{meal.name}}</h3>
+          <!-- <img class="image" v-bind:src="meal.image"> -->
+        </div>
+      </draggable>
+      <draggable v-if="fri" v-model="fri" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+        <p>Friday</p>
+        <div class="indv-meal-box" v-for="meal in fri.slice(0, 1)">
+          <h3>{{meal.name}}</h3>
+          <!-- <img class="image" v-bind:src="meal.image"> -->
+        </div>
+      </draggable>
+      <draggable v-if="sat" v-model="sat" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+        <p>Saturday</p>
+        <div class="indv-meal-box" v-for="meal in sat.slice(0, 1)">
+          <h3>{{meal.name}}</h3>
+          <!-- <img class="image" v-bind:src="meal.image"> -->
+        </div>
+      </draggable>
+      <draggable v-if="sun" v-model="sun" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+        <p>Sunday</p>
+        <div class="indv-meal-box" v-for="meal in sun.slice(0, 1)">
+          <h3>{{meal.name}}</h3>
+          <!-- <img class="image" v-bind:src="meal.image"> -->
+        </div>
+      </draggable>
+    </div>
     <meal-container :meals='meals'></meal-container>
-    <button type="button" name="button" v-on:click="addWeekIngredients();">Save Week</button>
+    <button type="button" name="button" v-on:click="addToWeek(); addWeekIngredients();">Save Week</button>
     <button type="button" name="button" v-on:click="handleResetWeek();">Reset Week</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
     <shopping-list v-if="showShoppingList" :noDuplicateIngredients='noDuplicateIngredients'></shopping-list>
@@ -31,6 +77,13 @@ export default {
     return {
       meals: [],
       week: [],
+      mon: [],
+      tue: [],
+      wed: [],
+      thur: [],
+      fri: [],
+      sat: [],
+      sun: [],
       weekObject: {},
       noDuplicateIngredients: {},
       inventories: [],
@@ -70,6 +123,15 @@ export default {
     getAllInventories(){
       DatabaseService.getAllInventories()
       .then(data => this.inventories = data)
+    },
+    addToWeek(){
+      this.week.push(this.mon[0])
+      this.week.push(this.tue[0])
+      this.week.push(this.wed[0])
+      this.week.push(this.thur[0])
+      this.week.push(this.fri[0])
+      this.week.push(this.sat[0])
+      this.week.push(this.sun[0])
     },
     addWeekIngredients(){
       var allMealsArray = [];  //array
@@ -120,8 +182,18 @@ export default {
 
 .week-container {
   grid-area: 2/1/3/2;
-  border: 2px solid #77A6B6;
   margin-left: 5%;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  overflow: scroll;
+}
+
+.day {
+  border: 1px dashed #77A6B6;
+}
+p {
+  padding: 0px;
+  display: inline;
 }
 
 .meals-container {
@@ -129,10 +201,10 @@ export default {
 }
 
 .indv-meal-box {
-  border: 1px solid #4D7298;
+
   margin: 0% auto 5% auto;
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -142,6 +214,7 @@ export default {
   object-fit: cover;
   opacity: 0.7;
   display: inline;
+
 }
 
 h3 {
