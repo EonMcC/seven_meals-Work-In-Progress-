@@ -54,8 +54,8 @@
       </draggable>
     </div>
     <meal-container :meals='meals'></meal-container>
-    <button type="button" name="button" v-on:click="addToWeek(); addWeekIngredients();">Save Week</button>
-    <button type="button" name="button" v-on:click="handleResetWeek();">Reset Week</button>
+    <button type="button" name="button" v-on:click="addToWeek(); addWeekIngredients(); ">Save Week</button>
+    <button type="button" name="button" v-on:click=" handleResetWeek();">Reset Week</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
     <shopping-list v-if="showShoppingList" :noDuplicateIngredients='noDuplicateIngredients'></shopping-list>
     <button type="button" name="button" v-on:click="handleShowForm();">Add New Meal</button>
@@ -125,21 +125,29 @@ export default {
       .then(data => this.inventories = data)
     },
     addToWeek(){
-      this.week.push(this.mon[0])
-      this.week.push(this.tue[0])
-      this.week.push(this.wed[0])
-      this.week.push(this.thur[0])
-      this.week.push(this.fri[0])
-      this.week.push(this.sat[0])
-      this.week.push(this.sun[0])
+      let weekArray = [this.mon, this.tue, this.wed, this.thur, this.fri, this.sat, this.sun];
+      const modifiedArray = [];
+      weekArray.forEach(function(day) {
+          modifiedArray.push(day[0])
+      })
+      this.week = modifiedArray
+      // this.week.push(this.mon[0])
+      // this.week.push(this.tue[0])
+      // this.week.push(this.wed[0])
+      // this.week.push(this.thur[0])
+      // this.week.push(this.fri[0])
+      // this.week.push(this.sat[0])
+      // this.week.push(this.sun[0])
     },
     addWeekIngredients(){
       var allMealsArray = [];  //array
         //ans
       for (const meal of this.week) {
+        if (meal) {
         for (const ingredient in meal.ingredients) {
           allMealsArray.push({[ingredient]: parseInt(meal.ingredients[ingredient])})
         }
+      }
       }
       for(var i = 0; i < allMealsArray.length; ++i){
         for(var ingredientObject in allMealsArray[i]){
@@ -190,6 +198,7 @@ export default {
 
 .day {
   border: 1px dashed #77A6B6;
+  max-height: 66.438px;
 }
 p {
   padding: 0px;
