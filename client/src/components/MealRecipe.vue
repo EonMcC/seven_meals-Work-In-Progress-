@@ -6,7 +6,6 @@
     <editor
     v-model="meal.instructions"
     :disabled=true
-    :inline=true
      api-key="xl05x6x6zhlkt1o2viaihcjkj8u9gm6ls0gdwlod3h7mmjcu"
      initialValue="<p>Add instructions here</p>"
      :init="{
@@ -17,10 +16,7 @@
          'searchreplace visualblocks code fullscreen',
          'insertdatetime media table paste code help wordcount'
        ],
-       toolbar:
-         'undo redo | formatselect | bold italic backcolor | \
-         alignleft aligncenter alignright alignjustify | \
-         bullist numlist outdent indent | removeformat | help'
+       toolbar: false,
      }"
      ></editor>
     <button v-on:click="closeMeal();" type="button" name="button">Close</button>

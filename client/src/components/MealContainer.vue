@@ -6,6 +6,7 @@
         <img class="image" v-bind:src="meal.image">
       </div>
     </draggable>
+    <meal-recipe v-if="meal" :meal="meal"></meal-recipe>
   </div>
 </template>
 
