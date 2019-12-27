@@ -50,8 +50,8 @@ export default {
   .indv-meal-box {
     border: 1px solid #4D7298;
     margin: 0% auto 5% auto;
-    height: 125px;
-    width: 125px;
+    height: 65px;
+    width: 150px;
     overflow: hidden;
   }
   .image {

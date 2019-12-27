@@ -174,14 +174,13 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  background-color: #B3D89C;
   height: 100vh;
   width: 100vw;
   text-align: center;
   color: #2c3e50;
   display: grid;
   grid-template: auto 1fr / 1fr 1fr;
-  background-color: #E8E8E8;
+  background-color: white;
 }
 
 .header {
@@ -236,5 +235,7 @@ h3 {
 
 button {
   padding: 2%;
+  background: none;
+  border: none;
 }
 </style>

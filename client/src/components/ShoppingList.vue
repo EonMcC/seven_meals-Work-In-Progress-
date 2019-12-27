@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="shopping-list">
-      <p v-for="(quantity, ingredient) in noDuplicateIngredients">{{ingredient}} : {{quantity}}</p>
+      <h2>Shopping List</h2>
+      <p class="ingredients" v-for="(quantity, ingredient) in noDuplicateIngredients">{{ingredient}} : {{quantity}}</p>
     <button type="button" name="button" v-on:click="handleCloseShoppingList();">Close Shopping List</button>
   </div>
 </template>
@@ -22,11 +23,18 @@ export default {
 <style lang="css" scoped>
   .shopping-list {
     position: absolute;
-    height: 90vh;
-    width: 90vw;
-    top: 0;
-    left: 0;
-    background-color: lightgrey;
-    opacity: 0.9;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+  }
+  .ingredients {
+    margin-top: 2%;
+    display: block;
+  }
+  h2 {
+    margin: 5% 0%;
+  }
+  button {
+    margin-top: 5%;
   }
 </style>

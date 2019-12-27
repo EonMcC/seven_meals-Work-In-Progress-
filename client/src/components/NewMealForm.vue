@@ -1,19 +1,24 @@
 <template lang="html">
   <div class="form">
+    <h2>Add a New Recipe</h2>
     <form class="" v-on:submit.prevent="handleSubmit();" action="index.html" method="post">
-      <input type="text" name="" value="" placeholder="Name" v-model="mealName">
+      <label for="name">Name: </label>
+      <input type="text" name="name" value="" placeholder="Enter meal name" v-model="mealName">
       <div v-for="(ingredient, index) in this.ingredients">
-      <input type="text" v-model="ingredient.ingredient">
+      <label for="ingredient">Ingredient Name: </label>
+      <input type="text" name="ingredient" v-model="ingredient.ingredient">
       </div>
       <div v-for="(ingredient, index) in this.quantities">
-      <input type="text" v-model="ingredient.quantity">
+      <label for="ingredientQ">Quantity: </label>
+      <input type="text" name="ingredientQ" v-model="ingredient.quantity">
       </div>
       <h4 @click="addIngredient">
-        New Ingredient
+        + New Ingredient
       </h4>
       <!-- <input type="text" name="" value="" placeholder="Instructions" v-model="instructions"> -->
-      <input type="text" name="" value="" placeholder="URL" v-model="image">
-      <input type="submit" name="" value="Accept Recipe">
+      <label for="image">Image URL: </label>
+      <input type="text" name="image" value="" placeholder="Optional image URL" v-model="image">
+      <input class="accept-button" type="submit" name="" value="Accept Recipe">
     </form>
     <button type="button" name="button" v-on:click="handleCloseForm();">Cancel Form</button>
     <form method="post">
@@ -89,15 +94,34 @@ export default {
 
 <style lang="css" scoped>
   .form {
+    text-align: left;
     position: absolute;
-    height: 90vh;
-    width: 90vw;
-    top:5%;
-    left: 5%;
+    height: 100vh;
+    width: 100vw;
     background-color: white;
+  }
+  h2 {
+    text-align: center;
+    margin: 4% 0;
+  }
+  h4 {
+    margin-bottom: 3%;
+    color: green;
+    text-align: center;
   }
   input{
     border: 1px solid black;
+    margin-left: 1%;
+    margin-bottom: 3%;
+  }
+  label {
+    margin-left: 5%;
+  }
+  .accept-button {
+    display: block;
+    margin: auto;
+    background: none;
+    padding: 1%;
   }
 
 </style>
