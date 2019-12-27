@@ -5,11 +5,11 @@
       <label for="name">Name: </label>
       <input type="text" name="name" value="" placeholder="Enter meal name" v-model="mealName">
       <div v-for="(ingredient, index) in this.ingredients">
-      <label for="ingredient">Ingredient Name: </label>
+      <label for="ingredient">Ingredient: </label>
       <input type="text" name="ingredient" v-model="ingredient.ingredient">
       </div>
       <div v-for="(ingredient, index) in this.quantities">
-      <label for="ingredientQ">Quantity: </label>
+      <label for="ingredientQ">Qty: </label>
       <input type="text" name="ingredientQ" v-model="ingredient.quantity">
       </div>
       <h4 @click="addIngredient">
@@ -18,16 +18,12 @@
       <!-- <input type="text" name="" value="" placeholder="Instructions" v-model="instructions"> -->
       <label for="image">Image URL: </label>
       <input type="text" name="image" value="" placeholder="Optional image URL" v-model="image">
-      <input class="accept-button" type="submit" name="" value="Accept Recipe">
-    </form>
-    <button type="button" name="button" v-on:click="handleCloseForm();">Cancel Form</button>
-    <form method="post">
       <editor
       v-model="instructions"
        api-key="xl05x6x6zhlkt1o2viaihcjkj8u9gm6ls0gdwlod3h7mmjcu"
-       initialValue="<p>Add instructions here</p>"
+       initialValue="<p>Add method here...</p>"
        :init="{
-         height: 500,
+         height: 400,
          menubar: false,
          plugins: [
            'advlist autolink lists link image charmap print preview anchor',
@@ -40,7 +36,10 @@
            bullist numlist outdent indent | removeformat | help'
        }"
        ></editor>
-</form>
+       <input class="accept-button" type="submit" name="" value="Accept Recipe">
+
+    </form>
+    <h5 v-on:click="handleCloseForm();">Cancel Form</h5>
   </div>
 </template>
 
@@ -105,14 +104,14 @@ export default {
     margin: 4% 0;
   }
   h4 {
+    margin-left: 5%;
     margin-bottom: 3%;
     color: green;
-    text-align: center;
   }
   input{
-    border: 1px solid black;
     margin-left: 1%;
     margin-bottom: 3%;
+    background-color: #EBF5EE;
   }
   label {
     margin-left: 5%;
@@ -122,6 +121,11 @@ export default {
     margin: auto;
     background: none;
     padding: 1%;
+  }
+  h5 {
+    margin: auto;
+    font-size: 1.1rem;
+    text-align: center;
   }
 
 </style>
