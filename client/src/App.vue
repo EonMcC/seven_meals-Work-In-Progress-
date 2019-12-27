@@ -24,9 +24,9 @@
           <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
-      <draggable v-if="thur" v-model="thur" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
+      <draggable v-if="thu" v-model="thu" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
         <p>Thursday</p>
-        <div class="indv-meal-box" v-for="meal in thur.slice(0, 1)">
+        <div class="indv-meal-box" v-for="meal in thu.slice(0, 1)">
           <h3>{{meal.name}}</h3>
           <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
@@ -80,7 +80,7 @@ export default {
       mon: [],
       tue: [],
       wed: [],
-      thur: [],
+      thu: [],
       fri: [],
       sat: [],
       sun: [],
@@ -125,7 +125,7 @@ export default {
       .then(data => this.inventories = data)
     },
     addToWeek(){
-      let weekArray = [this.mon, this.tue, this.wed, this.thur, this.fri, this.sat, this.sun];
+      let weekArray = [this.mon, this.tue, this.wed, this.thu, this.fri, this.sat, this.sun];
       const modifiedArray = [];
       weekArray.forEach(function(day) {
           modifiedArray.push(day[0])
@@ -157,6 +157,14 @@ export default {
     },
     handleResetWeek(){
       this.week = [];
+      this.noDuplicateIngredients = {};
+      this.mon = [];
+      this.tue = [];
+      this.wed = [];
+      this.thu = [];
+      this.fri = [];
+      this.sat = [];
+      this.sun = [];
     }
   }
 }
