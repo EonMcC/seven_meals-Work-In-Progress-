@@ -131,17 +131,11 @@ export default {
           modifiedArray.push(day[0])
       })
       this.week = modifiedArray
-      // this.week.push(this.mon[0])
-      // this.week.push(this.tue[0])
-      // this.week.push(this.wed[0])
-      // this.week.push(this.thur[0])
-      // this.week.push(this.fri[0])
-      // this.week.push(this.sat[0])
-      // this.week.push(this.sun[0])
     },
     addWeekIngredients(){
-      var allMealsArray = [];  //array
-        //ans
+      console.log(this.week)
+      var allMealsArray = [];
+      this.noDuplicateIngredients = [];
       for (const meal of this.week) {
         if (meal) {
         for (const ingredient in meal.ingredients) {
