@@ -7,7 +7,7 @@
     v-model="meal.instructions"
     :disabled=true
      api-key="xl05x6x6zhlkt1o2viaihcjkj8u9gm6ls0gdwlod3h7mmjcu"
-     initialValue="<p>Add instructions here</p>"
+     initialValue="<p>Method...</p>"
      :init="{
        height: 500,
        menubar: false,

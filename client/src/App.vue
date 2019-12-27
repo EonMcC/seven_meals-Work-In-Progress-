@@ -55,10 +55,10 @@
     </div>
     <meal-container :meals='meals'></meal-container>
     <button type="button" name="button" v-on:click="addToWeek(); addWeekIngredients(); ">Save Week</button>
+    <button type="button" name="button" v-on:click="handleShowForm();">+ Add New Meal</button>
     <button type="button" name="button" v-on:click=" handleResetWeek();">Reset Week</button>
     <button type="button" name="button"  v-on:click="createShoppingList();">Create Shopping List</button>
     <shopping-list v-if="showShoppingList" :noDuplicateIngredients='noDuplicateIngredients'></shopping-list>
-    <button type="button" name="button" v-on:click="handleShowForm();">Add New Meal</button>
     <new-meal-form v-if="showForm"></new-meal-form>
   </div>
 </template>
@@ -175,8 +175,8 @@ export default {
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   background-color: #B3D89C;
-  height: 95vh;
-  width: 95vw;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
   color: #2c3e50;
   display: grid;
@@ -186,6 +186,7 @@ export default {
 
 .header {
   grid-area: 1/1/2/3;
+  margin: 3% 0;
 }
 
 .week-container {
@@ -231,5 +232,9 @@ h3 {
   z-index: 1;
   opacity: 0.9;
   width: 33%;
+}
+
+button {
+  padding: 2%;
 }
 </style>

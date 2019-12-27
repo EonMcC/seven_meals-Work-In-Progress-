@@ -43,7 +43,7 @@ export default {
 
 <style lang="css" scoped>
   .meals-container {
-    height: 450px;
+    height: 515px;
     overflow: scroll;
     justify-content: center;
   }
