@@ -210,7 +210,6 @@ p {
 }
 
 .indv-meal-box {
-
   margin: 0% auto 5% auto;
   height: 30px;
   width: 100%;

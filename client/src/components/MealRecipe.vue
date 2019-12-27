@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="meal-recipe" v-if="meal">
-    <p>{{meal.name}}</p>
+    <h2>{{meal.name}}</h2>
     <p>{{meal.ingredients}}</p>
     <!-- <p>{{meal.instructions}}</p> -->
     <editor
@@ -43,10 +43,14 @@ export default {
 <style lang="css" scoped>
   .meal-recipe {
     position: absolute;
-    height: 90vh;
-    width: 90vw;
-    top:5%;
-    left: 5%;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
     background-color: white;
+    border: 2px solid black;
+  }
+  p{
+    display: block;
   }
 </style>

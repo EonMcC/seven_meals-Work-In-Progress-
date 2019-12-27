@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="form">
     <h2>Add a New Recipe</h2>
-    <form class="" v-on:submit.prevent="handleSubmit();" action="index.html" method="post">
+    <form class="" v-on:submit.prevent="handleSubmit();">
       <label for="name">Name: </label>
       <input type="text" name="name" value="" placeholder="Enter meal name" v-model="mealName">
-      <div v-for="(ingredient, index) in this.ingredients">
-      <label for="ingredient">Ingredient: </label>
-      <input type="text" name="ingredient" v-model="ingredient.ingredient">
-      </div>
-      <div v-for="(ingredient, index) in this.quantities">
-      <label for="ingredientQ">Qty: </label>
-      <input type="text" name="ingredientQ" v-model="ingredient.quantity">
+      <div class="container">
+        <div class="ingredient" v-for="(ingredient, index) in this.ingredients">
+          <input type="text" placeholder="Ingredient" v-model="ingredient.ingredient">
+        </div>
+          <div class="quantity" v-for="(ingredient, index) in this.quantities">
+          <input type="text" placeholder="Quantity" v-model="ingredient.quantity">
+        </div>
       </div>
       <h4 @click="addIngredient">
         + New Ingredient
@@ -126,6 +126,20 @@ export default {
     margin: auto;
     font-size: 1.1rem;
     text-align: center;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    /* grid-template-rows: repeat(20, 1fr;) */
+  }
+  .ingredient {
+    grid-column: 1/2;
+  }
+  .quantity {
+    grid-column: 2/3;
+
+    /* grid-area: 1/2/1/3 */
   }
 
 </style>
