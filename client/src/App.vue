@@ -133,9 +133,8 @@ export default {
       this.week = modifiedArray
     },
     addWeekIngredients(){
-      console.log(this.week)
       var allMealsArray = [];
-      this.noDuplicateIngredients = [];
+      this.noDuplicateIngredients = {};
       for (const meal of this.week) {
         if (meal) {
         for (const ingredient in meal.ingredients) {
@@ -158,7 +157,6 @@ export default {
     },
     handleResetWeek(){
       this.week = [];
-      this.weekObject = [];
     }
   }
 }
