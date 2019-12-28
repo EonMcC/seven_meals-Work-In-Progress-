@@ -106,11 +106,9 @@ export default {
       this.meals.push(mealObject)
       this.showForm = false
       })
-
     eventBus.$on('close-form', () =>
       this.showForm = false
     )
-
     eventBus.$on('close-shopping-list', () =>
       this.showShoppingList = false
     )

@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="meal-recipe" v-if="meal">
     <h2>{{meal.name}}</h2>
-    <p>{{meal.ingredients}}</p>
-    <!-- <p>{{meal.instructions}}</p> -->
+    <img class="image" v-bind:src="meal.image">
+    <p class="ingredients" v-for="(quantity, ingredient) in meal.ingredients">{{ingredient}} : {{quantity}}</p>
     <editor
     v-model="meal.instructions"
     :disabled=true
@@ -19,7 +19,7 @@
        toolbar: false,
      }"
      ></editor>
-    <button v-on:click="closeMeal();" type="button" name="button">Close</button>
+    <button v-on:click="closeMeal();" type="button" name="button">Back</button>
   </div>
 </template>
 
@@ -48,9 +48,28 @@ export default {
     left: 0;
     top: 0;
     background-color: white;
-    border: 2px solid black;
   }
-  p{
+  h2 {
+    margin: 3%;
+  }
+  p {
     display: block;
+  }
+  .ingredients {
+    text-align: left;
+    margin-left: 5%;
+    margin-bottom: 1%;
+    font-weight: bold;
+  }
+
+  button {
+    z-index: 10;
+    position: relative;
+  }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
   }
 </style>

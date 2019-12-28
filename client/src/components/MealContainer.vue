@@ -26,7 +26,6 @@ export default {
   mounted() {
     eventBus.$on('closeMeal',() => {
       this.meal = null
-
     });
   },
   components: {
