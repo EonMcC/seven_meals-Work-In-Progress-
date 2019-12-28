@@ -6,50 +6,42 @@
         <p>Monday</p>
         <div class="indv-meal-box" v-for="meal in mon.slice(0, 1)">
           <h3>{{meal.name}}</h3>
-          <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
       <draggable v-if="tue" v-model="tue" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
         <p>Tuesday</p>
         <div class="indv-meal-box" v-for="meal in tue.slice(0, 1)">
-
           <h3>{{meal.name}}</h3>
-          <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
       <draggable v-if="wed" v-model="wed" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
         <p>Wednesday</p>
         <div class="indv-meal-box" v-for="meal in wed.slice(0, 1)">
           <h3>{{meal.name}}</h3>
-          <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
       <draggable v-if="thu" v-model="thu" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
         <p>Thursday</p>
         <div class="indv-meal-box" v-for="meal in thu.slice(0, 1)">
           <h3>{{meal.name}}</h3>
-          <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
       <draggable v-if="fri" v-model="fri" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
         <p>Friday</p>
         <div class="indv-meal-box" v-for="meal in fri.slice(0, 1)">
           <h3>{{meal.name}}</h3>
-          <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
       <draggable v-if="sat" v-model="sat" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
         <p>Saturday</p>
         <div class="indv-meal-box" v-for="meal in sat.slice(0, 1)">
           <h3>{{meal.name}}</h3>
-          <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
       <draggable v-if="sun" v-model="sun" group="choiceOfMeals" @start="drag=true" @end="drag=false" class="day">
         <p>Sunday</p>
         <div class="indv-meal-box" v-for="meal in sun.slice(0, 1)">
           <h3>{{meal.name}}</h3>
-          <!-- <img class="image" v-bind:src="meal.image"> -->
         </div>
       </draggable>
     </div>
@@ -195,8 +187,9 @@ export default {
 }
 
 .day {
-  border: 1px dashed #77A6B6;
+  border: 1px solid #4D7298;
   max-height: 66.438px;
+  cursor: all-scroll;
 }
 p {
   padding: 0px;
@@ -209,18 +202,10 @@ p {
 
 .indv-meal-box {
   margin: 0% auto 5% auto;
-  height: 30px;
+  height: 45px;
   width: 100%;
   overflow: hidden;
-}
-
-.image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  opacity: 0.7;
-  display: inline;
-
+  cursor: all-scroll;
 }
 
 h3 {
@@ -234,5 +219,6 @@ button {
   padding: 2%;
   background: none;
   border: none;
+  cursor: pointer;
 }
 </style>

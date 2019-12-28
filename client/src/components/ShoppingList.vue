@@ -2,7 +2,7 @@
   <div class="shopping-list">
       <h2>Shopping List</h2>
       <p class="ingredients" v-for="(quantity, ingredient) in noDuplicateIngredients">{{ingredient}} : {{quantity}}</p>
-    <button type="button" name="button" v-on:click="handleCloseShoppingList();">Close Shopping List</button>
+    <button type="button" name="button" v-on:click="handleCloseShoppingList();">Back</button>
   </div>
 </template>
 

@@ -57,7 +57,7 @@ export default {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    opacity: 0.7;
+    
     display: inline;
   }
 

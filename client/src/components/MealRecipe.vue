@@ -65,6 +65,7 @@ export default {
   button {
     z-index: 10;
     position: relative;
+    cursor: pointer;
   }
   img {
     position: absolute;

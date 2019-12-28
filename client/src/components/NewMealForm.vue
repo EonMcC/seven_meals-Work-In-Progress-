@@ -15,7 +15,6 @@
       <h4 @click="addIngredient">
         + New Ingredient
       </h4>
-      <!-- <input type="text" name="" value="" placeholder="Instructions" v-model="instructions"> -->
       <label for="image">Image URL: </label>
       <input type="text" name="image" value="" placeholder="Optional image URL" v-model="image">
       <editor
