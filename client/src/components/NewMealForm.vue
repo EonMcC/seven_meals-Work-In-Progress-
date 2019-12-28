@@ -57,6 +57,7 @@ export default {
       quantities: [],
       instructions: "",
       image: "",
+      mealObjectArray: [],
       mealObject: {}
     }
   },
@@ -81,10 +82,9 @@ export default {
     },
     combineIngredientQuantity(){
       for(var i = 0; i < this.ingredients.length; ++i){
-        for(var ingredient in this.ingredients){
-          this.mealObject.ingredients = {[this.ingredients[i].ingredient]: parseInt(this.quantities[i].quantity)}
-          }
+          this.mealObjectArray.push({[this.ingredients[i].ingredient]: parseInt(this.quantities[i].quantity)})
         }
+        this.mealObject.ingredients = Object.assign({}, ...this.mealObjectArray);
       }
   }
 }
