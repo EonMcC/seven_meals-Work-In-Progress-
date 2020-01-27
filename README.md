@@ -1,7 +1,9 @@
-# Seven Meals (Work In Progress)
+# Seven Meals (Mobile) (Work In Progress)
 An app to help with weekly dinner ideas and shopping
 
 I am writing this app to a) help with weekly dinners/shopping, and b) consolidate my JavaScript, Vue.js, MongoDB learning.
+
+Currently designed for mobile only.
 
 # Project setup
 ``
